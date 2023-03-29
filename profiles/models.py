@@ -4,7 +4,7 @@ from django.contrib.auth.models import User
 from django.dispatch import receiver
 
 
-class Profiles(models.Model):
+class Profile(models.Model):
 
     owner = models.OneToOneField(User, on_delete=models.CASCADE)
     created_on = models.DateTimeField(auto_now_add=True)
@@ -25,4 +25,4 @@ class Profiles(models.Model):
 @receiver(post_save, sender=User)
 def create_profile(sender, instance, created, **kwargs):
     if created:
-        Profiles.objects.create(owner=instance)
+        Profile.objects.create(owner=instance)
