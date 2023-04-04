@@ -36,7 +36,6 @@ class ProfileDetail(APIView):
         serializer = ProfileSerializer(
             profile, context={'request': request}
         )
-
         return Response(serializer.data)
 
     def put(self, request, pk):
@@ -48,5 +47,4 @@ class ProfileDetail(APIView):
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data)
-
-        return Response(serializer.error, status=status.HTTP_400_BADD_REQUEST)
+        return Response(serializer.error, status=status.HTTP_400_BAD_REQUEST)
